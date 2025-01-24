@@ -24,5 +24,7 @@ Skrip ini menyediakan cara otomatis untuk menginstal dan mengonfigurasi **Apache
 Untuk memulai, Anda perlu menyalin repositori ke server Anda. Jalankan perintah berikut untuk meng-clone repositori ke direktori lokal:
 
 ```bash
-git clone https://github.com/username/repo-name.git
-cd repo-name
+git clone https://github.com/rafacraft1/ubuntu-webserver.git
+cd ubuntu-webserver
+chmod +x install.sh
+./install.sh
