@@ -26,20 +26,25 @@ server {
 
     location ~ \.php\$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
         include fastcgi_params;
     }
+
+    location ~ /\.ht {
+        deny all;
+    }
 }
 EOL
-sudo ln -s /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
-sudo rm /etc/nginx/sites-enabled/default
+sudo ln -sf /etc/nginx/sites-available/laravel /etc/nginx/sites-enabled/
+sudo rm -f /etc/nginx/sites-enabled/default
+sudo nginx -t && sudo systemctl reload nginx
 
 # Instal PHP dan semua ekstensi yang diperlukan untuk Laravel
 echo "Menginstal PHP dan ekstensi yang diperlukan untuk Laravel..."
-sudo apt install php php-fpm php-cli php-mbstring php-xml php-bcmath php-curl php-zip php-intl php-soap php-tokenizer php-common unzip -y
-sudo systemctl enable php-fpm
-sudo systemctl start php-fpm
+sudo apt install php php8.1-fpm php-cli php-mbstring php-xml php-bcmath php-curl php-zip php-intl php-soap php-tokenizer php-common unzip -y
+sudo systemctl enable php8.1-fpm
+sudo systemctl start php8.1-fpm
 
 # Instal PostgreSQL
 echo "Menginstal PostgreSQL..."
@@ -62,7 +67,7 @@ sudo -u postgres psql -d ${POSTGRES_DB} -c "ALTER DEFAULT PRIVILEGES IN SCHEMA p
 echo "Restart layanan Nginx..."
 sudo systemctl restart nginx
 echo "Restart layanan PHP-FPM..."
-sudo systemctl restart php-fpm
+sudo systemctl restart php8.1-fpm
 echo "Restart layanan PostgreSQL..."
 sudo systemctl restart postgresql
 
@@ -70,9 +75,8 @@ sudo systemctl restart postgresql
 echo "Instalasi selesai."
 echo "Server Anda telah dikonfigurasi dengan:"
 echo "- Nginx (dengan dukungan PHP-FPM)"
-echo "- PHP dengan ekstensi untuk Laravel (mbstring, xml, bcmath, curl, zip, intl, soap, tokenizer)"
+echo "- PHP 8.1 dengan ekstensi untuk Laravel (mbstring, xml, bcmath, curl, zip, intl, soap, tokenizer)"
 echo "- PostgreSQL (database server)"
 echo "Database: ${POSTGRES_DB}"
 echo "User: ${POSTGRES_USER}"
-echo "Password: ${POSTGRES_PASSWORD}"
 echo "Unggah aplikasi Anda ke direktori /var/www/html untuk menggunakannya."
