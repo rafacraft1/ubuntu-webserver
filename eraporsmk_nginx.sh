@@ -26,7 +26,7 @@ server {
 
     location ~ \.php\$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php-fpm.sock;
         fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
         include fastcgi_params;
     }
@@ -42,7 +42,10 @@ sudo nginx -t && sudo systemctl reload nginx
 
 # Instal PHP dan semua ekstensi yang diperlukan untuk Laravel
 echo "Menginstal PHP dan ekstensi yang diperlukan untuk Laravel..."
-sudo apt install php php8.1-fpm php-cli php-mbstring php-xml php-bcmath php-curl php-zip php-intl php-soap php-tokenizer php-common unzip -y
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+sudo apt install php8.1 php8.1-fpm php8.1-cli php8.1-mbstring php8.1-xml php8.1-bcmath php8.1-curl php8.1-zip php8.1-intl php8.1-soap php8.1-tokenizer php8.1-common unzip -y
 sudo systemctl enable php8.1-fpm
 sudo systemctl start php8.1-fpm
 
