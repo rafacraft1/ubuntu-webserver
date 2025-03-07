@@ -4,7 +4,7 @@ Skrip ini menyediakan cara otomatis untuk menginstal dan mengonfigurasi **Apache
 
 ## Fitur
 - Instalasi **Apache** sebagai server web.
-- Instalasi **PHP** dengan ekstensi yang dibutuhkan untuk Laravel:
+- Instalasi **PHP** dengan ekstensi :
   - `mbstring`, `xml`, `bcmath`, `curl`, `zip`, `intl`, `soap`, `tokenizer`, `mysql`.
 - Instalasi **MySQL** dan konfigurasi password root secara otomatis.
 - Restart layanan **Apache** dan **MySQL** setelah instalasi selesai.
