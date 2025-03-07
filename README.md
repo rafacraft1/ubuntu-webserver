@@ -1,6 +1,6 @@
-# Setup Web Server untuk Laravel (Apache, PHP, MySQL)
+# Setup Web Server(Apache, PHP, MySQL)
 
-Skrip ini menyediakan cara otomatis untuk menginstal dan mengonfigurasi **Apache**, **PHP (dengan ekstensi yang dibutuhkan Laravel)**, dan **MySQL** pada **Ubuntu Server**. Setelah menjalankan skrip ini, server Anda akan siap untuk menjalankan aplikasi **Laravel**.
+Skrip ini menyediakan cara otomatis untuk menginstal dan mengonfigurasi **Apache**, **PHP** dan **MySQL** pada **Ubuntu Server**.
 
 ## Fitur
 - Instalasi **Apache** sebagai server web.
